@@ -3,6 +3,7 @@ import { Address } from "../Models/Address.js";
 export const addAddress = async (req, res) => {
   let { fullName, address, city, state, country, pincode, phoneNumber } =
     req.body;
+  // console.log("called in controller!!")
   let useraddress = await Address.create({
     userId: req.user,
     fullName,
