@@ -4,21 +4,21 @@ import jwt from "jsonwebtoken";
 
 //user register
 export const register = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email,username, password } = req.body;
   try {
     let user = await User.findOne({ email });
     if (user)
       return res.json({ message: "User Already exist", success: false });
 
     const hashPass = await bcrypt.hash(password, 10);
-    user = await User.create({ name, email, password: hashPass });
+    user = await User.create({ name, email,username, password: hashPass });
     res.json({
       message: "User Registered successfully!!! ...",
       user,
       success: true,
     });
   } catch (err) {
-    res.json({ message: err.message });
+    res.json({ message: err.message +"error from ::controller" });
   }
 };
 
